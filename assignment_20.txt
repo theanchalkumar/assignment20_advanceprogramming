@@ -1,0 +1,93 @@
+1.
+
+def secret(s):
+    s1 = ''
+    l = s.split('.')
+    s1 += '<' + l[0] + " class='"
+    
+    for i in range(1,len(l)):
+        s1 += l[i] + ' '
+        
+    return s1.strip() +"'>"+l[0]+">"    
+    
+print(secret("p.one.two.three"))
+print(secret("p.one"))
+print(secret("p.four.five"))
+
+
+2.
+
+
+def count_lone_ones(n):
+    n = str(n)
+    count = 0
+    
+    if n[0] == '1' and n[1] != '1':
+        count += 1
+        
+    for i in range(2,len(n)):
+        if n[i] == '1' and n[i-1] != '1':
+            count += 1
+            
+    return count
+
+print(count_lone_ones(101))
+print(count_lone_ones(1191))
+print(count_lone_ones(1111))
+print(count_lone_ones(462))
+
+
+3.
+
+
+def printGrid(r,c):
+    l = []
+    for i in range(r):
+        l1 = []
+        for j in range(c):
+            l1.append((i+1)+j*r)
+
+        l.append(l1)    
+
+    return l 
+
+print(printGrid(3, 6))
+print(printGrid(5, 3))
+print(printGrid(4, 1))
+
+
+4.
+
+
+def min_miss_pos(l):
+    n = max(sorted(l))
+
+    for i in range(n):
+        if i > 0 and i not in l:
+            return i
+        
+print(min_miss_pos([-2, 0, 1, 3, 3, 5, 8, 9, 9, 9]))
+print(min_miss_pos([0, 4, 4, -1, 9, 4, 5, 2, 10, 7, 6, 3, 10, 9]))
+print(min_miss_pos( [-1, 0, 2, 3, 4, 4, 4, 5, 6, 7, 9, 9, 10, 10]))
+
+
+5.
+
+
+
+def pizza_points(customers, min_order, min_order_price):
+    l = []
+    for key,value in customers.items():
+        count = 0        
+        for i in value:
+            if i >= min_order_price:
+                count += 1
+
+        if count >= min_order:
+            l.append(key)
+    return l
+
+customers = { "Batman": [22, 30, 11, 17, 15, 52, 27, 12], "Spider-Man": [5, 17, 30, 33, 40, 22, 26, 10, 11, 45] }
+print(pizza_points(customers,5,20))
+print(pizza_points(customers,3,10))
+print(pizza_points(customers,5,100))
